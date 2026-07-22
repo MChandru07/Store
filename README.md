@@ -47,8 +47,4 @@
 ---
 python manage.py runserver 8001
 ---
-## admin 
-----
-user name : arjun
-password : arjun@123
 ----# CodeAlpha_E-commerceStore
