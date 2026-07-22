@@ -21,13 +21,13 @@
    ```bash
    python manage.py shell
    ```
-   and run:
-   ```python
-   from shop.models import Product
-   Product.objects.create(name='Keyboard', description='Mechanical keyboard', price=49.99, image_url='')
-   Product.objects.create(name='Mouse', description='Wireless mouse', price=19.99, image_url='')
-   Product.objects.create(name='Headphones', description='Noise cancelling', price=79.99, image_url='')
-   ```
+   #and run:
+ ```python
+#   from shop.models import Product
+ #  Product.objects.create(name='Keyboard', description='Mechanical keyboard', price=49.99, image_url='')
+  # Product.objects.create(name='Mouse', description='Wireless mouse', price=19.99, image_url='')
+  # Product.objects.create(name='Headphones', description='Noise cancelling', price=79.99, image_url='')
+ #  ```
 4. Start the server:
    ```bash
    python manage.py runserver
