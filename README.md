@@ -49,7 +49,4 @@ python manage.py runserver 8001
 ---
 ----# CodeAlpha_E-commerceStore
 
-## video
----
-<video src ="\videos\KMP - MP4 Audio/Video File (.mp4)" controls width="640" height="360"> my video </video>
----
+
