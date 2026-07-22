@@ -32,8 +32,9 @@
    ```bash
    python manage.py runserver
    ```
+   ---
    localhost8000
-
+   
 ## URLs
 - Home / product listing: `/`
 - Product detail: `/product/<id>/`
