@@ -1,0 +1,43 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+
+{% block title %}Card Payment{% endblock %}
+
+{% block content %}
+  <h1>Card Payment</h1>
+  <p class="muted">(Demo) Enter card details to pay for Order #{{ order.id }}.</p>
+
+  <form class="payment-card" method="post" action="{% url 'mark_order_paid' order.id %}">
+    {% csrf_token %}
+
+
+    <div class="field">
+      <label>Card Number</label>
+      <input type="text" name="card_number" placeholder="1234 5678 9012 3456" inputmode="numeric" />
+    </div>
+
+    <div class="row">
+      <div class="field">
+        <label>Expiry (MM/YY)</label>
+        <input type="text" name="exp" placeholder="08/29" />
+      </div>
+      <div class="field">
+        <label>CVV</label>
+        <input type="password" name="cvv" placeholder="123" inputmode="numeric" />
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Name on Card</label>
+      <input type="text" name="name_on_card" placeholder="John Doe" />
+    </div>
+
+    <div class="actions">
+      <button class="btn" type="submit">Pay ₹ {{ order.total }}</button>
+      <a class="btn secondary" href="{% url 'order_detail' order.id %}">Cancel</a>
+    </div>
+
+    <p class="hint">This is a UI-only flow (no real payment gateway).</p>
+  </form>
+{% endblock %}
+

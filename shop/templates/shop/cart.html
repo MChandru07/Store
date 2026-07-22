@@ -1,0 +1,47 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+{% block title %}Cart{% endblock %}
+
+{% block content %}
+  <h1>Your Cart</h1>
+
+  {% if items %}
+    <div class="cart">
+      {% for item in items %}
+        <div class="cart-row" data-product-id="{{ item.product.id }}">
+          <div class="cart-name">
+            <strong>{{ item.product.name }}</strong>
+            <div class="muted">${{ item.product.price }} each</div>
+          </div>
+          <div class="cart-qty">
+            <button class="qty-btn" onclick="updateQty({{ item.product.id }}, -1)">-</button>
+            <span class="qty">{{ item.qty }}</span>
+            <button class="qty-btn" onclick="updateQty({{ item.product.id }}, 1)">+</button>
+          </div>
+          <div class="cart-line">
+            <span class="line">${{ item.line_total }}</span>
+            <button class="link" onclick="removeFromCart({{ item.product.id }})">Remove</button>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+    <div class="summary">
+      <div>Subtotal: <strong>${{ subtotal }}</strong></div>
+      <div>Tax: <strong>${{ tax }}</strong></div>
+      <div>Total: <strong>${{ total }}</strong></div>
+    </div>
+
+    <div class="checkout">
+      <a class="btn" href="{% url 'checkout' %}">Proceed to checkout</a>
+    </div>
+  {% else %}
+    <p>Your cart is empty.</p>
+    <a class="btn secondary" href="{% url 'product_list' %}">Continue shopping</a>
+  {% endif %}
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'shop/cart.js' %}"></script>
+{% endblock %}
+

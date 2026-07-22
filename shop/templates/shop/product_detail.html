@@ -1,0 +1,25 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+{% block title %}{{ product.name }}{% endblock %}
+
+{% block content %}
+  <div class="detail">
+    <div class="detail-media">
+      <img src="{{ product.image_url_effective }}" alt="{{ product.name }}">
+    </div>
+    <div class="detail-info">
+      <h1>{{ product.name }}</h1>
+      <p class="price">${{ product.price }}</p>
+      <p class="desc">{{ product.description }}</p>
+      <div class="actions">
+      <button class="btn" onclick="addToCart({{ product.id }})">Add to cart</button>
+      <a class="btn secondary" href="{% url 'cart_view' %}">Go to cart</a>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'shop/cart.js' %}"></script>
+{% endblock %}
+

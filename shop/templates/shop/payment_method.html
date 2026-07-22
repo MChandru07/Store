@@ -1,0 +1,18 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+
+{% block title %}Payment Methods{% endblock %}
+
+{% block content %}
+  <h1>Select Payment Method</h1>
+  <p class="muted">Order #{{ order.id }} • Amount: ₹ {{ order.total }}</p>
+
+  <div class="payment-methods">
+    <a class="btn" href="{% url 'pay_upi' order.id %}">Pay with UPI</a>
+    <a class="btn secondary" href="{% url 'pay_debit_card' order.id %}">Pay with Debit Card</a>
+    <a class="btn secondary" href="{% url 'pay_credit_card' order.id %}">Pay with Credit Card</a>
+  </div>
+
+  <a class="btn secondary" href="{% url 'order_detail' order.id %}">Back to Order</a>
+{% endblock %}
+

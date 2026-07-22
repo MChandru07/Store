@@ -1,0 +1,75 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{% block title %}Store{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'shop/style.css' %}">
+  <link rel="stylesheet" href="{% static 'shop/theme.css' %}">
+
+</head>
+<body>
+  <header class="topbar">
+    <div class="brandwrap">
+      <div class="logo">🛍️</div>
+      <a class="brand" href="{% url 'product_list' %}">NovaMart</a>
+    </div>
+    <nav>
+<div>
+      <section class="theme-switch">
+        <button type="button" class="theme-btn" id="themeBtnLight" aria-pressed="false" title="Light">🌞</button>
+        <button type="button" class="theme-btn" id="themeBtnDark" aria-pressed="true" title="Dark">🌜</button>
+        <button type="button" class="theme-btn" id="themeBtnSystem" aria-pressed="false" title="System">💻</button>
+      </section><br>
+
+</div>
+
+      {% if user.is_authenticated %}
+        <span class="user">{{ user.username }}</span>
+        <a href="{% url 'checkout' %}">Checkout</a>
+        <a href="{% url 'cart_view' %}">Cart</a>
+        <a href="{% url 'logout' %}">Logout</a>
+      {% else %}
+        <a href="{% url 'login' %}">Login</a>
+        <a href="{% url 'signup' %}">Signup</a>
+        <a href="{% url 'cart_view' %}">Cart</a>
+      {% endif %}
+
+    </nav>
+  </header>
+
+  <main class="container">
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-col">
+        <h3>NovaMart</h3>
+        <p>Fast shipping • Quality products • Secure payments</p>
+      </div>
+      <div class="footer-col">
+        <h3>Company</h3>
+        <p>123 Market Street, Your City</p>
+        <p>Email: support@novamart.example</p>
+      </div>
+      <div class="footer-col">
+        <h3>Support</h3>
+        <p>Mon–Fri: 9:00–18:00</p>
+        <p>Phone: +91 98765-43210</p>
+
+      </div>
+    </div>
+    <div class="footer-bottom">© {% now "Y" %} NovaMart. All rights reserved.</div>
+  </footer>
+
+
+  <script>
+    window.csrfToken = '{{ csrf_token }}';
+  </script>
+   <script src="{% static 'shop/theme.js' %}"></script>
+  {% block scripts %}{% endblock %}
+</body>
+</html>
+

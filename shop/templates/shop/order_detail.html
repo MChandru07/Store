@@ -1,0 +1,40 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+{% block title %}Order #{{ order.id }}{% endblock %}
+
+{% block content %}
+  <h1>Order Confirmation</h1>
+  <p>Order ID: <strong>#{{ order.id }}</strong></p>
+  <p>Status: <strong>{{ order.status }}</strong></p>
+  <p>Created at: {{ order.created_at }}</p>
+
+  <h2>Items</h2>
+  <div class="cart">
+    {% for item in items %}
+      <div class="cart-row">
+        <div class="cart-name">
+          <strong>{{ item.product.name }}</strong>
+          <div class="muted">${{ item.unit_price }} each</div>
+        </div>
+        <div class="cart-qty">Qty: <strong>{{ item.quantity }}</strong></div>
+        <div class="cart-line"><span class="line">Line: ${{ item.quantity|floatformat:2|add:0|floatformat }} </span></div>
+        <div class="cart-line"><span class="line">${{ item.line_total }}</span></div>
+      </div>
+    {% endfor %}
+  </div>
+
+  <div class="summary">
+    <div>Subtotal: <strong>${{ order.subtotal }}</strong></div>
+    <div>Tax: <strong>${{ order.tax }}</strong></div>
+    <div>Total: <strong>${{ order.total }}</strong></div>
+  </div>
+
+  <div class="payment-methods">
+    <a class="btn" href="{% url 'payment_method' order.id %}">Pay now</a>
+  </div>
+
+  <a class="btn secondary" href="{% url 'product_list' %}">Back to products</a>
+{% endblock %}
+
+
+

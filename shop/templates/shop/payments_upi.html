@@ -1,0 +1,35 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+
+{% block title %}UPI Payment{% endblock %}
+
+{% block content %}
+  <h1>UPI Payment</h1>
+
+  <p class="muted">Pay for Order #{{ order.id }} using UPI.</p>
+
+  <div class="payment-card">
+    <div class="field">
+      <label>UPI ID</label>
+      <div class="value">{{ upi_id }}</div>
+    </div>
+
+    <div class="field">
+      <label>Amount</label>
+      <div class="value">₹ {{ order.total }}</div>
+    </div>
+
+    <div class="field">
+      <label>Pay Note</label>
+      <div class="value">NovaMart Order #{{ order.id }}</div>
+    </div>
+
+    <div class="actions">
+      <a class="btn" href="{{ upi_intent_url }}" target="_blank" rel="noopener">Pay with UPI App</a>
+      <a class="btn secondary" href="{% url 'mark_order_paid' order.id %}">I Paid (Mark Paid)</a>
+      <a class="btn secondary" href="{% url 'order_detail' order.id %}">Back to Order</a>
+
+    </div>
+  </div>
+{% endblock %}
+
