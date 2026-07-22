@@ -51,5 +51,5 @@ python manage.py runserver 8001
 
 ## video
 ---
-<video src ="KMP - MP4 Audio/Video File (.mp4)" controls width="640" height="360"> my video </video>
+<video src ="\videos\KMP - MP4 Audio/Video File (.mp4)" controls width="640" height="360"> my video </video>
 ---
